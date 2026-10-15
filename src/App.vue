@@ -7,12 +7,12 @@ import RightSideBar from '@/components/layout/RightSideBar.vue';
 </script>
 <template>
   <Header />
-  <div class="flex gap-2 w-full justify-center overflow-hidden">
-    <LeftSideBar />
-    <main class="min-w-0 w-6/10">
+  <div class="flex w-full justify-center overflow-hidden">
+    <LeftSideBar class="w-16/100"/>
+    <main class="min-w-0 w-6/10 px-4">
       <router-view />
     </main>
-    <RightSideBar />
+    <!-- <RightSideBar /> -->
   </div>
   <Footer />
 </template>

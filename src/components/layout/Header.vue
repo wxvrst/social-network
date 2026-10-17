@@ -1,74 +1,61 @@
 <script setup lang="ts">
-import Cog from '@primeicons/vue/cog';
-import Bell from '@primeicons/vue/bell';
-import AngleDown from '@primeicons/vue/angle-down';
-import QuestionCircle from '@primeicons/vue/question-circle';
-import type { Link } from '@/types/types';
+import { Cog, Bell, User } from "@primeicons/vue";
+import image from "@/assets/avatar.jpg";
+import logo from "@/assets/logo.vue";
+import type { Link } from "@/types/types";
 
 const links: Link[] = [
-  {
-    href: '/notifications',
-    icon: Bell,
-    label: 'Notifications'
-  },
-  {
-    href: '/settings',
-    icon: Cog,
-    label: 'Settings'
-  },
-  {
-    href: '/qanda',
-    icon: QuestionCircle,
-    label: 'Q&A'
-  },
-]
-
-const test = ref<boolean>(false);
-
-const handleToggleTest = () => {
-  test.value = !test.value;
-}
+	{
+		href: "/notifications",
+		icon: Bell,
+	},
+	{
+		href: "/settings",
+		icon: Cog,
+	},
+	{
+		href: "/2",
+		image: image,
+		icon: User,
+	},
+];
 </script>
 
 <template>
-  <header class="h-12 w-full bg-neutral-800/40 border-b border-neutral-600/10 flex items-center justify-center mb-4">
-    <ul class="h-full flex items-center justify-center gap-4 w-8/10 [&>li]:cursor-pointer">
-      <li class="font-semibold hover:text-neutral-300 transition-color duration-100 text-nowrap px-2">
-        <a href="#">
-          my site logo
-        </a>
-      </li>
+	<header
+		class="bg-neutral-800/30 flex items-center justify-center mb-1 p-3 rounded-2xl outline -outline-offset-1 outline-white/8"
+	>
+		<ul class="h-full w-full flex items-center justify-between gap-4">
+			<li
+				class="font-semibold hover:text-blue-600 transition-color duration-400 text-nowrap px-2"
+			>
+				<router-link
+					to="/"
+					class="flex tracking-widest text-4xl font-normal"
+				>
+					<logo class="size-9" />
+					reue
+				</router-link>
+			</li>
 
-      <li class="cursor-text!">
-        <input
-          class="bg-neutral-800 rounded-lg px-4 py-1 outline-none hover:bg-neutral-600/40 focus:bg-neutral-600/40 transition-color duration-100"
-          placeholder="Search" />
-      </li>
-
-      <li class="ml-auto relative">
-        <button class="hover:text-teal-600 hover:bg-neutral-700/40 transition-color duration-200 p-3"
-          @click="handleToggleTest">
-          avatar
-          <AngleDown class="inline-block transition-transform duration-200" :class="test && 'rotate-180'" />
-        </button>
-
-        <div class="absolute bg-neutral-800 right-0 transition-all duration-200 ease-in-out"
-          :class="test ? 'opacity-100 translate-y-0' : '-translate-y-8 opacity-0 pointer-events-none'">
-          <ol class="bg-neutral-900 p-2 flex flex-col gap-2">
-            <li v-for="(link, index) in links" :key="index">
-              <a :href="link.href"
-                class="text-lg flex items-center gap-2 group tracking-widest py-2 group rounded hover:bg-neutral-800/60 transition-color duration-200 text-left px-2">
-                <component :is="link.icon" v-if="link.icon" :size="24"
-                  class="group-hover:text-teal-600 transition-color duration-200" :class="link.label === 'Settings' &&
-                    'group-hover:animate-[spin_2s_cubic-bezier(0.7,0,0.3,1)_infinite_alternate]'" />
-
-                {{ link.label }}
-              </a>
-            </li>
-          </ol>
-        </div>
-
-      </li>
-    </ul>
-  </header>
+			<li class="flex gap-3">
+				<router-link
+					v-for="(link, index) in links"
+					:key="index"
+					:to="link.href"
+					class="bg-white text-black aspect-square w-12 rounded-full overflow-hidden flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors duration-300"
+				>
+					<img
+						v-if="link.image"
+						:src="link.image"
+						alt="avatar"
+					/>
+					<component
+						v-else="link.icon"
+						:is="link.icon"
+					/>
+				</router-link>
+			</li>
+		</ul>
+	</header>
 </template>

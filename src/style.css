@@ -19,14 +19,13 @@
 		"Helvetica Neue",
 		sans-serif;
 
-	font-weight: 100;
+	font-weight: 400;
 	word-wrap: break-word;
 
 	--border: #a4a4a4;
 
-	background: #121212;
+	background: #080808;
 	color: #ebebeb;
-
 	font-synthesis: none;
 	text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
@@ -34,12 +33,10 @@
 }
 
 #app {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
 	min-width: 320px;
+	height: 100dvh;
 	min-height: 100vh;
-	margin: 0 auto;
+	margin: 8px;
 	padding: 0;
 	text-align: center;
 }

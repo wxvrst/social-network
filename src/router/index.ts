@@ -1,5 +1,4 @@
 import { routes } from "./routes/routes.ts";
-import { nextTick } from "vue";
 import { createRouter, createWebHistory } from "vue-router";
 
 const router = createRouter({

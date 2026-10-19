@@ -23,7 +23,7 @@ const links: Link[] = [
 
 <template>
 	<header
-		class="bg-neutral-800/30 flex items-center justify-center mb-1 p-3 rounded-2xl outline -outline-offset-1 outline-white/8"
+		class="bg-neutral-800/30 flex items-center justify-center mb-1 p-3 rounded-2xl border border-white/8"
 	>
 		<ul class="h-full w-full flex items-center justify-between gap-4">
 			<li
@@ -51,9 +51,10 @@ const links: Link[] = [
 						alt="avatar"
 					/>
 					<component
-						v-else="link.icon"
+						v-else-if="link.icon"
 						:is="link.icon"
 					/>
+					<User v-else />
 				</router-link>
 			</li>
 		</ul>

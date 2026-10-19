@@ -45,6 +45,16 @@ export const routes = [
 		component: () => import("@/pages/NotificationsPage.vue"),
 	},
 	{
+		path: "/saved",
+		name: "saved",
+		component: () => import("@/pages/SavedPage.vue"),
+	},
+	{
+		path: "/support",
+		name: "support",
+		component: () => import("@/pages/SupportPage.vue"),
+	},
+	{
 		path: "/:pathMatch(.*)*",
 		name: "404",
 		component: () => import("@/pages/NoMatchPage.vue"),

@@ -9,12 +9,12 @@ export const userPublicationsStore = defineStore("publications", () => {
 
 	const isEmpty = computed(() => publications.value.length === 0);
 
-	const fetchPublications = async (): Promise<void> => {
+	const fetchPublications = async (search?: string): Promise<void> => {
 		isLoading.value = true;
 		error.value = null;
 
 		try {
-			const result = await publicationApi.getPublications();
+			const result = await publicationApi.getPublications(search);
 			publications.value = result;
 		} catch (err) {
 			error.value = (err as Error).message;
@@ -22,7 +22,6 @@ export const userPublicationsStore = defineStore("publications", () => {
 			isLoading.value = false;
 		}
 	};
-
 	const fetchPublication = async (id: number): Promise<void> => {
 		isLoading.value = true;
 		error.value = null;
@@ -42,25 +41,7 @@ export const userPublicationsStore = defineStore("publications", () => {
 		error.value = null;
 
 		try {
-			const result = await publicationApi.postPublication(publicationData);
-			currentPublication.value = result;
-			await fetchPublications();
-		} catch (err) {
-			error.value = (err as Error).message;
-		} finally {
-			isLoading.value = false;
-		}
-	};
-
-	const replacePublication = async (
-		id: number,
-		publicationData: UpdatePublication,
-	): Promise<void> => {
-		isLoading.value = true;
-		error.value = null;
-
-		try {
-			await publicationApi.putPublication(id, publicationData);
+			await publicationApi.postPublication(publicationData);
 			await fetchPublications();
 		} catch (err) {
 			error.value = (err as Error).message;
@@ -109,7 +90,6 @@ export const userPublicationsStore = defineStore("publications", () => {
 		fetchPublications,
 		fetchPublication,
 		createPublication,
-		replacePublication,
 		updatePublication,
 		removePublication,
 	};

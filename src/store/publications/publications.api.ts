@@ -16,14 +16,6 @@ const publicationApi = {
 		return data;
 	},
 
-	putPublication: async (
-		id: number,
-		publicationData: UpdatePublication,
-	): Promise<Publication> => {
-		const { data } = await apiPublication.put(`/${id}/`, publicationData);
-		return data;
-	},
-
 	patchPublication: async (
 		id: number,
 		publicationData: UpdatePublication,

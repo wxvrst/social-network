@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Home, Users, Comment, File, Phone, Bookmark, QuestionCircle } from "@primeicons/vue";
-import type { Link } from "@/types/types";
+import type { Link } from "@/shared/types/types";
 
 const route = useRoute();
 const links: Link[] = [
@@ -43,9 +43,7 @@ const links: Link[] = [
 </script>
 
 <template>
-	<aside
-		class="bg-neutral-800/30 flex justify-center p-3 rounded-2xl border border-white/8"
-	>
+	<aside class="bg-neutral-800/30 flex justify-center p-3 rounded-2xl border border-white/8">
 		<nav class="w-full">
 			<ol class="flex flex-col gap-1">
 				<li

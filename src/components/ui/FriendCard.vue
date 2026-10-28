@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { User } from "@/types/types";
+import type { User } from "@/store/users";
 import { Star, StarFill } from "@primeicons/vue";
 
 defineProps<{
@@ -19,7 +19,7 @@ const handleClickAddToFavorite = () => {};
 			<div class="flex flex-col gap-1 text-left">
 				<router-link
 					:to="`/${user.username}`"
-					class="w-fit text-2xl border-b border-transparent hover:border-white transition-colors duration-200"
+					class="w-fit text-2xl underline decoration-transparent transition-colors duration-200 hover:decoration-white"
 				>
 					{{ user.name }}
 				</router-link>

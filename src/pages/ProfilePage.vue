@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { Comment, Phone, Plus } from "@primeicons/vue";
 import image from "@/assets/avatar.jpg";
-import FriendCard from "@/components/ui/FriendCard.vue";
-import type { User } from "@/types/types";
+import type { User } from "@/store/users";
 
 const user: User = {
+	id: 1,
 	name: "Gregor Zamza",
 	description: "Frontend developer, Google INC.",
 	username: "wxvrst",

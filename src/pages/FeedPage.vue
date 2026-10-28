@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import PublicationCard from "@/components/ui/PublicationCard.vue";
-import type { Publication as PublicationType, User } from "@/types/types";
+import type { Publication } from "@/store/publications";
+import type { User } from "@/store/users";
 import { Paperclip } from "@primeicons/vue";
 
 import image from "@/assets/avatar.jpg";
 import frog from "@/assets/frog.jpg";
 
 const user: User = {
+	id: 1,
 	name: "Gregor Zamza",
 	description: "Frontend developer, Google INC.",
 	username: "wxvrst",
@@ -35,22 +37,22 @@ const user: User = {
 	],
 };
 
-const publications: PublicationType[] = [
+const publications: Publication[] = [
 	{
 		id: 1,
-		author_id: "wxvrst",
+		author_id: 1,
 		author: user,
 		description: "description1",
 		image: frog,
-		date_added: new Date(),
+		date_added: "18.20.2023",
 	},
 	{
 		id: 2,
-		author_id: "rererer",
+		author_id: 2,
 		author: user,
 		description: "description2",
 		image: image,
-		date_added: new Date(),
+		date_added: "18.20.2023",
 	},
 ];
 const test = ref<boolean>(false);
@@ -74,15 +76,15 @@ const handleToggleTest = () => {
 			rows="4"
 			maxlength="200"
 		></textarea>
-		<div class="flex flex-col gap-2">
+		<div class="flex flex-col gap-2 justify-center">
 			<button
-				class="h-12 text-nowrap text-black bg-white px-8 py-2 rounded-4xl hover:bg-blue-600 hover:text-white transition-all duration-300 hover:scale-102 active:scale-98"
+				class="text-nowrap text-black bg-white px-6 py-2 rounded-4xl hover:bg-blue-600 hover:text-white transition-all duration-300 hover:scale-102 active:scale-98"
 				@click="handleToggleTest"
 			>
 				Create publication
 			</button>
 			<button
-				class="h-12 text-nowrap flex items-center gap-2 text-black bg-white px-8 py-2 rounded-4xl hover:bg-blue-600 hover:text-white transition-all duration-300 hover:scale-102 active:scale-98"
+				class="text-nowrap flex items-center gap-2 text-black bg-white px-6 py-2 rounded-4xl hover:bg-blue-600 hover:text-white transition-all duration-300 hover:scale-102 active:scale-98"
 				@click="handleToggleTest"
 			>
 				<Paperclip />

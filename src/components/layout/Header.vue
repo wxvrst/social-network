@@ -2,7 +2,7 @@
 import { Cog, Bell, User } from "@primeicons/vue";
 import image from "@/assets/avatar.jpg";
 import logo from "@/assets/logo.vue";
-import type { Link } from "@/types/types";
+import type { Link } from "@/shared/types/types";
 
 const links: Link[] = [
 	{

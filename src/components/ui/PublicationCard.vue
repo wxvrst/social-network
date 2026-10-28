@@ -1,42 +1,50 @@
 <script setup lang="ts">
-import type { Publication } from "@/types/types";
+import type { Publication } from "@/store/publications";
 import { EllipsisH, User } from "@primeicons/vue";
 
-defineProps<{
+const props = defineProps<{
 	publication: Publication;
 }>();
 
 const test = ref<boolean>(false);
-
+const router = useRouter();
 const handleToggleTest = () => {
 	test.value = !test.value;
+};
+
+const handleToAccount = () => {
+	router.push(`/${props.publication.author_id}`);
 };
 </script>
 
 <template>
 	<div class="border-b border-white/10 flex flex-col p-3">
 		<div class="relative flex gap-2 self-start w-full">
-			<router-link
-				:to="`/${publication.author_id}`"
-				class="flex gap-2"
+			<img
+				v-if="publication.author.avatar"
+				:src="publication.author.avatar"
+				alt="avatar"
+				class="bg-white text-black aspect-square w-12 rounded-full overflow-hidden hover:brightness-80 transition duration-200 cursor-pointer"
+				@click="handleToAccount()"
+			/>
+			<User
+				v-else
+				class="bg-white text-black aspect-square w-12 h-12 rounded-full overflow-hidden hover:brightness-80 transition duration-200 cursor-pointer"
+				@click="handleToAccount()"
+			/>
+			<span
+				class="h-fit underline decoration-transparent transition-colors duration-200 hover:decoration-white cursor-pointer"
+				@click="handleToAccount()"
 			>
-				<img
-					v-if="publication.author.avatar"
-					:src="publication.author.avatar"
-					alt="avatar"
-					class="bg-white text-black aspect-square w-12 rounded-full overflow-hidden hover:brightness-80 transition duration-200"
-				/>
-				<User v-else />
-				<span
-					class="hover:border-white h-fit border-b border-transparent transition-colors duration-200"
-				>
-					{{ publication.author.name }}
-				</span>
-				<span class="text-white/40 hover:text-white/80 transition-colors duration-200">
-					@{{ publication.author.username }}
-				</span>
-			</router-link>
-			<span>{{ publication.date_added.toLocaleDateString("ru-RU") }}</span>
+				{{ publication.author.name }}
+			</span>
+			<span
+				class="h-fit text-white/40 hover:text-white/80 transition-colors duration-200 cursor-pointer"
+				@click="handleToAccount()"
+			>
+				@{{ publication.author.username }}
+			</span>
+			<span>{{ publication.date_added }}</span>
 			<button
 				class="flex w-8 h-8 ml-auto items-center justify-center hover:bg-white/10 rounded-full transition-colors duration-200"
 				@click="handleToggleTest"

@@ -2,6 +2,7 @@
 
 Опробовать:
 
+```
 <details>
   <summary>Click to expand</summary>
   <p>This content can be expanded or collapsed.</p>
@@ -20,3 +21,4 @@ download="" и target="" для <a>
 loading="" для <img>
 maxlength/minlength="" и spellcheck="" для <input> и <textarea>
 type="file" в связке с accept="" для <input>
+```
